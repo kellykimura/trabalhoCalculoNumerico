@@ -32,8 +32,8 @@ def substituicao_regressiva (A,b):
 
     return x
 
+# APROXIMAÇÃO POLINOMIAL DE GRAU 2
 def polinomio2grau (x,y):
-    # APROXIMAÇÃO POLINOMIAL DE GRAU 2
     n = len(x) # para sabermos quantos elementos tem no vetor x
 
     e0 = x**0 # cria um vetor de n números 1's 
@@ -64,6 +64,36 @@ def polinomio2grau (x,y):
     print(f"\n\nb: {b}")
 
     return w
+
+# APROXIMAÇÃO POLINOMIAL DE GRAU 3
+def polinomio3grau (x,y):
+    n = len(x) 
+
+    e0 = x**0
+    e1 = x**1
+    e2 = x**2
+    e3 = x**3
+
+    lista = [e0, e1, e2, e3]
+
+    A = np.zeros((4,4))
+
+    for i in range(4):
+        for j in range(4):
+            A[i][j] = produto_escalar(lista[i], lista[j])
+
+    # multiplicações escalares combinando com y
+    b = np.zeros(4)
+    for i in range(4):
+        b[i] = produto_escalar(lista[i], y)
+
+    # resolver sistema
+    A,b = escalonador(A,b)
+    w = substituicao_regressiva(A,b)
+
+    return w
+
+
 
 
 # importar os dados da tabela para a variável dados
