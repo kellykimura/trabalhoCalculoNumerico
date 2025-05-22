@@ -4,11 +4,46 @@ import matplotlib.pyplot as plt
 # ===================== PARTE A =========================
 
 def produto_escalar (mult1, mult2):
+    """
+    Produto escalar de dois vetores vetor.
+    
+    Parameters
+    ----------
+    mult1 : float
+            valor que está no array.
+    
+    mult2 : float
+            valor que está no outro array.
+
+    Returns 
+    -------
+    produto : int
+            soma das multiplicações
+    """
 
     produto = sum(mult1 * mult2)
     return produto
 
 def escalonador (A,b):
+    """
+    Eliminação de Gauss.
+    
+    Parameters
+    ----------
+    A : array
+        Matriz.
+    
+    b : float
+        vetor independente do sistema escalar.
+
+    Returns 
+    -------
+    A : array
+        retorna a matriz escalonada.
+
+    b : array
+        vetor do sistema independente.
+    """
     n = len(A)
 
     for k in range(n-1):
