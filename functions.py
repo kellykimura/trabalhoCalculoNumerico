@@ -93,6 +93,38 @@ def polinomio3grau (x,y):
 
     return w
 
+# APROXIMAÇÃO POR FUNÇÃO EXPONENCIAL
+def exponencial (x,y):
+    n = len(x)
+
+    e0 = x**0
+    e1 = x**1
+    lny = np.log(y)
+
+    lista = [e0,e1]
+    A = np.zeros((2,2))
+
+    for i in range(2):
+        for j in range(2):
+            A[i][j] = produto_escalar(lista[i],lista[j])
+    
+    # multiplicação de y
+    b = np.zeros(2)
+    for i in range(2):
+        b[i] = produto_escalar(lista[i], lny)
+    
+    # resolver o sistema
+    A,b = escalonador(A,b)
+    w = substituicao_regressiva(A,b)
+
+    a = np.exp(w[0]) # ln(a)
+    b = w[1]
+
+    return a,b
+
+# APROXIMAÇÃO POR FUNÇÃO GEOMÉTRICA
+
+# APROXIMAÇÃO POR FUNÇÃO HIPERBÓLICA
 
 
 
