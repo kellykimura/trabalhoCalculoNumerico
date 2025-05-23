@@ -161,6 +161,26 @@ def exponencial (x,y):
 
 # APROXIMAÇÃO POR FUNÇÃO HIPERBÓLICA
 
+# CALCULAR VALORES DE Y AJUSTADOS
+# Y DO POLINÔMIO DE GRAU 2
+def ajustado_grau2 (x,y):
+    w = polinomio2grau(x,y)
+    return w[0] + w[1]*x + w[2]*x*2
+
+# Y DO POLINÔMIO DE GRAU 3
+def ajustado_grau3 (x,y):
+    w = polinomio3grau(x,y)
+    return w[0] + w[1]*x + w[2]*x2 + w[3]*x*3
+
+# Y DA FUNÇÃO EXPONENCIAL
+def ajustado_exponencial (x,y):
+    a,b = exponencial(x,y)
+    return a * np.exp(b * x)
+
+# Y DA FUNÇÃO GEOMÉTRICA
+# Y DA FUNÇÃO HIPERBÓLICA
+
+
 
 
 # importar os dados da tabela para a variável dados
