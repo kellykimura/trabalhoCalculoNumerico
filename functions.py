@@ -256,7 +256,6 @@ def geometrica(x, y):
     return a, b
 
 
-
 # APROXIMAÇÃO POR FUNÇÃO HIPERBÓLICA
 def hiperbólica(x, y):
     """
@@ -297,14 +296,16 @@ def hiperbólica(x, y):
 
 # CALCULAR VALORES DE Y AJUSTADOS
 # Y DO POLINÔMIO DE GRAU 2
-def ajustado_grau2 (x,y):
+def ajustado_grau_2 (x,y):
+    # y = w_0 + w_1*x + w_2*x**2
     w = polinomio_grau_2(x,y)
     return w[0] + w[1]*x + w[2]*x*2
 
 # Y DO POLINÔMIO DE GRAU 3
-def ajustado_grau3 (x,y):
+def ajustado_grau_3 (x,y):
+    # y = w_0 + w_1*x + w_2*x**2 + w_3*x**3
     w = polinomio_grau_3(x,y)
-    return w[0] + w[1]*x + w[2]*x2 + w[3]*x*3
+    return w[0] + w[1]*x + w[2]*x**2 + w[3]*x**3
 
 # Y DA FUNÇÃO EXPONENCIAL 
 def ajustado_exponencial (x,y):
@@ -313,10 +314,17 @@ def ajustado_exponencial (x,y):
     return a * np.exp(b * x)
 
 # Y DA FUNÇÃO GEOMÉTRICA
-# y = a * b^x => ln(y) = ln(a) + x * ln(b)
+def ajustado_geometrica(x,y):
+    # y = a * b^x => ln(y) = ln(a) + x * ln(b)
+    a, b = geometrica(x,y)
+    return a * (b ** x)
 
 # Y DA FUNÇÃO HIPERBÓLICA
-#  y = a / (b + x)
+def ajustado_hiperbólica(x,y):
+    #  y = a / (b + x)
+    a, b = hiperbólica(x, y)
+    return a / (b + x)
+
 
 
 
