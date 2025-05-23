@@ -1,5 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
 
 # ===================== PARTE A =========================
 
@@ -324,29 +323,3 @@ def ajustado_hiperbólica(x,y):
     #  y = a / (b + x)
     a, b = hiperbólica(x, y)
     return a / (b + x)
-
-
-
-
-
-# importar os dados da tabela para a variável dados
-dados = np.loadtxt('Populacao_PresidentePrudente.dat')
-x = dados[:,0]
-y = dados[:,1]
-
-w = polinomio_grau_2(x,y)
-print(f"\n\nW: {w}")
-
-plt.scatter(x, y, label='Dados reais')
-plt.xlabel('Ano (A)')
-plt.ylabel('População (P)')
-plt.title('Gráfico de População Presidente Prudente')
-plt.grid(True)
-
-# Curva ajustada
-x_ajuste = np.linspace(min(x), max(x), 200)
-y_ajuste = w[0] + w[1]*x_ajuste + w[2]*x_ajuste**2
-plt.plot(x_ajuste, y_ajuste, color='red', label='Ajuste Polinomial (grau 2)')
-plt.legend()
-
-plt.show()
