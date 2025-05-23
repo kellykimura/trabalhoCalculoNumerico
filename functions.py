@@ -56,6 +56,21 @@ def escalonador (A,b):
     return A,b
 
 def substituicao_regressiva (A,b):
+    """
+    Sistema linear triangular superior para solução de matrizes
+
+    Parameters
+    ----------
+    A : array
+        matriz triangular superior 
+    b : array
+        vetor dos termos independentes
+
+    Returns
+    -------
+    x : array
+        vetor solução 
+    """
     n = len(b)
     x = np.zeros(n)
 
@@ -68,8 +83,22 @@ def substituicao_regressiva (A,b):
     return x
 
 # APROXIMAÇÃO POLINOMIAL DE GRAU 2
-def polinomio2grau (x,y):
-    n = len(x) # para sabermos quantos elementos tem no vetor x
+def polinomio_grau_2 (x,y):
+    """
+    Mínimos quadrados de polinômio de grau 2 do tipo
+    P(x) = w_0 + w_1*x + w_2*x**2
+
+    Parameters
+    ----------
+    x : int
+        vetor dos valores dependentes
+    y : int
+        vetor dos valores independentes
+    Returns
+    -------
+    w : array 
+        coeficientes do polinômio ajustado
+    """
 
     e0 = x**0 # cria um vetor de n números 1's 
     e1 = x**1
@@ -102,7 +131,21 @@ def polinomio2grau (x,y):
 
 # APROXIMAÇÃO POLINOMIAL DE GRAU 3
 def polinomio3grau (x,y):
-    n = len(x) 
+    """
+    Mínimos quadrados de polinômio de grau 3 do tipo
+    P(x) = w_0 + w_1*x + w_2*x**2 + w_3*x**3
+
+    Parameters
+    ----------
+    x : int
+        vetor dos valores independentes
+    y : int
+        vetor dos valores dependentes
+    Returns
+    -------
+    w : array 
+        coeficientes do polinômio ajustado
+    """
 
     e0 = x**0
     e1 = x**1
@@ -130,7 +173,26 @@ def polinomio3grau (x,y):
 
 # APROXIMAÇÃO POR FUNÇÃO EXPONENCIAL
 def exponencial (x,y):
-    n = len(x)
+    """
+    Modelo de crescimento exponencial do tipo
+    y = a * exp(b*x)
+
+    Parameters
+    ----------
+    x : array
+        vetor com os valores da variável independente
+
+    y : array
+        vetor com os valores da variável dependente
+    
+    Returns
+    -------
+    a : float 
+        Coeficiente multiplicativo da função exponencial
+    b : float 
+        Expoente linear
+
+    """
 
     e0 = x**0
     e1 = x**1
@@ -172,13 +234,17 @@ def ajustado_grau3 (x,y):
     w = polinomio3grau(x,y)
     return w[0] + w[1]*x + w[2]*x2 + w[3]*x*3
 
-# Y DA FUNÇÃO EXPONENCIAL
+# Y DA FUNÇÃO EXPONENCIAL 
 def ajustado_exponencial (x,y):
+    #  y = a * exp(bx)
     a,b = exponencial(x,y)
     return a * np.exp(b * x)
 
 # Y DA FUNÇÃO GEOMÉTRICA
+# y = a * b^x => ln(y) = ln(a) + x * ln(b)
+
 # Y DA FUNÇÃO HIPERBÓLICA
+#  y = a / (b + x)
 
 
 
