@@ -28,8 +28,9 @@ O objetivo do trabalho é utilizar o _método dos mínimos quadrados_ sobre uma 
 
 ## Pacotes utilizados
 
-> [!WARNING]
-> Ainda em andamento...
+> pandas
+> matplotlib
+> numpy
 
 
 ## Colaboradores 
