@@ -9,8 +9,8 @@ def teste_alinhamento_r2(populacao, ajuste_aproximado):
 
     media_populacao = np.mean(populacao) # faz a média aritmética
     # Usando o sum do numpy para evitar qualquer problema
-    numerador = np.sum((populacao - media_populacao) ** 2)
-    denominador = np.sum((populacao - ajuste_aproximado) ** 2)
+    numerador = np.sum((populacao - ajuste_aproximado) ** 2)
+    denominador = np.sum((populacao - media_populacao) ** 2)
 
     r = 1 - (numerador/denominador)
     return r
