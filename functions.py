@@ -130,7 +130,7 @@ def polinomio_grau_2 (x,y):
     return w
 
 # APROXIMAÇÃO POLINOMIAL DE GRAU 3
-def polinomio3grau (x,y):
+def polinomio_grau_3 (x,y):
     """
     Mínimos quadrados de polinômio de grau 3 do tipo
     P(x) = w_0 + w_1*x + w_2*x**2 + w_3*x**3
@@ -221,17 +221,54 @@ def exponencial (x,y):
 
 # APROXIMAÇÃO POR FUNÇÃO GEOMÉTRICA
 
+
 # APROXIMAÇÃO POR FUNÇÃO HIPERBÓLICA
+def hiperbólica(x, y):
+    """
+    Ajuste de uma função hiperbólica do tipo 
+    y = a / (x+b) => 1/y = b/a + (1/a)x
+
+    Parameters
+    ----------
+    x : array
+        vetor com os valores da variável independente
+
+    y : array
+        vetor com os valores da variável dependente
+    
+    Returns
+    -------
+    a : float 
+        Coeficiente od numerador da função hiperbólica (escala do decaimento)
+    b : float 
+        Termo somado ao denominador (desloca a curva no eixo x)
+    """
+    inv_y = 1 / y
+    e0, e1 = x**0, x**1
+    # montar mínimos quadrados
+    A = np.array([
+        [produto_escalar(e0, e0), produto_escalar(e0, e1)],
+        [produto_escalar(e1, e0), produto_escalar(e1, e1)]
+    ])
+    b = np.array([produto_escalar(e0, inv_y), produto_escalar(e1, inv_y)])
+
+    A_aux, b_aux = A, b
+
+    A, b = escalonador(A_aux, b_aux)
+    coef = substituicao_regressiva(A, b)
+    a = 1 / coef[1]
+    b = coef[0] * a
+    return a, b
 
 # CALCULAR VALORES DE Y AJUSTADOS
 # Y DO POLINÔMIO DE GRAU 2
 def ajustado_grau2 (x,y):
-    w = polinomio2grau(x,y)
+    w = polinomio_grau_2(x,y)
     return w[0] + w[1]*x + w[2]*x*2
 
 # Y DO POLINÔMIO DE GRAU 3
 def ajustado_grau3 (x,y):
-    w = polinomio3grau(x,y)
+    w = polinomio_grau_3(x,y)
     return w[0] + w[1]*x + w[2]*x2 + w[3]*x*3
 
 # Y DA FUNÇÃO EXPONENCIAL 
@@ -254,7 +291,7 @@ dados = np.loadtxt('Populacao_PresidentePrudente.dat')
 x = dados[:,0]
 y = dados[:,1]
 
-w = polinomio2grau(x,y)
+w = polinomio_grau_2(x,y)
 print(f"\n\nW: {w}")
 
 plt.scatter(x, y, label='Dados reais')
