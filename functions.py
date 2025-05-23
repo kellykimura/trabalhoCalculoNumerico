@@ -323,3 +323,13 @@ def ajustado_hiperbólica(x,y):
     #  y = a / (b + x)
     a, b = hiperbólica(x, y)
     return a / (b + x)
+
+# ESTIMAR POPULAÇÃO DE 2030
+def estimar_população (x, y, ano_estimado):
+
+    # como a função que melhor se adequa aos dados é a do 
+    # polinômio de grau 3, usamos ela
+    w = polinomio_grau_3(x,y)
+    estimativa = w[0] + w[1]*ano_estimado + w[2]*ano_estimado**2 + w[3]*ano_estimado**3
+    return estimativa
+
