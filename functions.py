@@ -220,6 +220,41 @@ def exponencial (x,y):
     return a,b
 
 # APROXIMAÇÃO POR FUNÇÃO GEOMÉTRICA
+def geometrica(x, y):
+    """
+    Ajuste de função geométrica para função do tipo
+    y = a * b^x
+
+    Parameters
+    ----------
+    x : array
+        vetor com os valores da variável independente
+
+    y : array
+        vetor com os valores da variável dependente
+
+    Returns
+    -------
+    a : float 
+        Valor inicial da progressão geométrica (coeficiente multiplicativo)
+    b : float 
+        Razão da progressão geométrica
+    """
+    log_y = np.log(y)
+    e0, e1 = x**0, x**1
+    A = np.array([
+        [produto_escalar(e0, e0), produto_escalar(e0, e1)],
+        [produto_escalar(e1, e0), produto_escalar(e1, e1)]
+    ])
+    b = np.array([produto_escalar(e0, log_y), produto_escalar(e1, log_y)])
+
+    A_aux, b_aux = A, b
+    A, b = escalonador(A_aux, b_aux)
+    coef = substituicao_regressiva(A, b)
+    a = np.exp(coef[0])
+    b = np.exp(coef[1])
+    return a, b
+
 
 
 # APROXIMAÇÃO POR FUNÇÃO HIPERBÓLICA
